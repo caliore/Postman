@@ -1,0 +1,851 @@
+{
+	"info": {
+		"_postman_id": "cb8d545a-9c26-493b-8994-ea0046a7d7f2",
+		"name": "Blog Comments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Positive Test Cases",
+			"item": [
+				{
+					"name": "POST create comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23da4694-7201-4bcc-9e5b-557eea2964a0",
+								"exec": [
+									"pm.test(\"Article ID is match\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"5d6b2d1efea90e017c71d8ca\");",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"if(responseCode.code === 201) {",
+									"    tests[\"Test passed, response code is 201 Created\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = false;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = false;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"});",
+									"",
+									"",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"instanceId\");",
+									"    pm.expect(pm.response.text()).to.include(\"ownerId\");",
+									"    pm.expect(pm.response.text()).to.include(\"ownerSiteMemberId\");",
+									"    pm.expect(pm.response.text()).to.include(\"postId\");",
+									"    pm.expect(pm.response.text()).to.include(\"key\");",
+									"    pm.expect(pm.response.text()).to.include(\"text\");",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"createdDate\");",
+									"    pm.expect(pm.response.text()).to.include(\"isLiked\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"image\");",
+									"",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": {\n        \"blocks\": [\n            {\n                \"key\": \"foo\",\n                \"text\": \"Nice Article!\",\n                \"type\": \"unstyled\",\n                \"depth\": 0,\n                \"inlineStyleRanges\": [],\n                \"entityRanges\": [],\n                \"data\": {}\n            }\n        ],\n        \"entityMap\": {},\n        \"VERSION\": \"6.10.1\"\n    },\n    \"hashtags\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4840c5c8-582e-4a90-a96a-06fca0ed5e2f",
+								"exec": [
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"if(responseCode.code === 200) {",
+									"    tests[\"Test passed, response code is 200\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = false;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = false;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments?offset=0&size=20",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH modify comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85c93f2c-4010-4604-967d-692856daa560",
+								"exec": [
+									"pm.test(\"Article ID is match\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"5d6b2d1efea90e017c71d8ca\");",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"if(responseCode.code === 200) {",
+									"    tests[\"Test passed, response code is 200\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = false;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = false;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"",
+									"    ",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": {\n        \"blocks\": [\n            {\n                \"key\": \"foo\",\n                \"text\": \"Nice Article! 5:39pm\",\n                \"type\": \"unstyled\",\n                \"depth\": 0,\n                \"inlineStyleRanges\": [],\n                \"entityRanges\": [],\n                \"data\": {}\n            }\n        ],\n        \"entityMap\": {},\n        \"VERSION\": \"6.10.1\"\n    },\n    \"hashtags\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments/5e8527df59f64500176b4b18",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments",
+								"5e8527df59f64500176b4b18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET specific comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3545b44f-95b7-4b66-a982-0288bce53cd7",
+								"exec": [
+									"pm.test(\"Response time is less than 500ms\", function() {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"if (responseCode.code === 200) {",
+									"    tests[\"Test passed, response code is 200 OK\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"} else if (responseCode.code === 500) {",
+									"    tests[\"Server is down\"] = false;",
+									"} else {",
+									"    tests[\"Something went wrong\"] = false;",
+									"}",
+									"",
+									"pm.test(\"Response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"});",
+									"",
+									"",
+									"pm.test(\"Body matches string\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"id\");",
+									"    pm.expect(pm.response.text()).to.include(\"instanceId\");",
+									"    pm.expect(pm.response.text()).to.include(\"ownerId\");",
+									"    pm.expect(pm.response.text()).to.include(\"ownerSiteMemberId\");",
+									"    pm.expect(pm.response.text()).to.include(\"postId\");",
+									"    pm.expect(pm.response.text()).to.include(\"key\");",
+									"    pm.expect(pm.response.text()).to.include(\"text\");",
+									"    pm.expect(pm.response.text()).to.include(\"type\");",
+									"    pm.expect(pm.response.text()).to.include(\"createdDate\");",
+									"    pm.expect(pm.response.text()).to.include(\"isLiked\");",
+									"    pm.expect(pm.response.text()).to.include(\"name\");",
+									"    pm.expect(pm.response.text()).to.include(\"image\");",
+									"",
+									"});",
+									"",
+									"pm.test(\"Response should be in the correct format\", function() {",
+									"    let jsonResponse = pm.response.json();",
+									"    pm.expect(jsonResponse.ownerId).to.be.a('string');",
+									"    pm.expect(jsonResponse.isLiked).to.be.a('boolean');",
+									"    pm.expect(jsonResponse.content.blocks.key).to.be.a('string');",
+									"",
+									"",
+									"    ",
+									"    ",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "dHH0WIEyQpTJ6x-oW-uD-ztV1JppXKzWHhyytkcKPP8.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIzOjEzOjQxLjc0NloiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiI1MTYxYWNjMS1iMDM1LTQwYTItYjE5YS0wMWY2MDc2Yjc3ZDMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDM6MTM6NDEuNzQ2WiJ9",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "dHH0WIEyQpTJ6x-oW-uD-ztV1JppXKzWHhyytkcKPP8.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIzOjEzOjQxLjc0NloiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiI1MTYxYWNjMS1iMDM1LTQwYTItYjE5YS0wMWY2MDc2Yjc3ZDMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDM6MTM6NDEuNzQ2WiJ9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments/5e8527df59f64500176b4b18",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments",
+								"5e8527df59f64500176b4b18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c360bb4-06b9-4e2d-9747-dcefda4b79bf",
+								"exec": [
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"if(responseCode.code === 204) {",
+									"    tests[\"Test passed, response code is 204 No Content\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = false;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = false;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"",
+									"    ",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments/5e85152afa834f0017721454",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments",
+								"5e85152afa834f0017721454"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Negative Test Cases",
+			"item": [
+				{
+					"name": "CommentWithoutText",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23da4694-7201-4bcc-9e5b-557eea2964a0",
+								"exec": [
+									"pm.test(\"Article ID is match\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"5d6b2d1efea90e017c71d8ca\");",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"if(responseCode.code === 201) {",
+									"    tests[\"Test passed, response code is 201 Created\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = false;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = false;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"",
+									"    ",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": {\n        \"blocks\": [\n            {\n                \"key\": \"foo\",\n                \"text\": \"\", \n                \"type\": \"unstyled\",\n                \"depth\": 0,\n                \"inlineStyleRanges\": [],\n                \"entityRanges\": [],\n                \"data\": {}\n            }\n        ],\n        \"entityMap\": {},\n        \"VERSION\": \"6.10.1\"\n    },\n    \"hashtags\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WrongCommentID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3545b44f-95b7-4b66-a982-0288bce53cd7",
+								"exec": [
+									"pm.test(\"Response time is less than 500ms\", function() {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"if (responseCode.code === 200) {",
+									"    tests[\"Test passed, response code is 200 OK\"] = false;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = true;",
+									"} else if (responseCode.code === 500) {",
+									"    tests[\"Server is down\"] = true;",
+									"} else {",
+									"    tests[\"Something went wrong\"] = true;",
+									"}",
+									"",
+									"pm.test(\"Response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"});",
+									"",
+									"",
+									"pm.test(\"Body matches error\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Comment with id 5e85351459f64500176b5666 not found\");",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "dHH0WIEyQpTJ6x-oW-uD-ztV1JppXKzWHhyytkcKPP8.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIzOjEzOjQxLjc0NloiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiI1MTYxYWNjMS1iMDM1LTQwYTItYjE5YS0wMWY2MDc2Yjc3ZDMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDM6MTM6NDEuNzQ2WiJ9"
+							},
+							{
+								"key": "instance",
+								"type": "text",
+								"value": "dHH0WIEyQpTJ6x-oW-uD-ztV1JppXKzWHhyytkcKPP8.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIzOjEzOjQxLjc0NloiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiI1MTYxYWNjMS1iMDM1LTQwYTItYjE5YS0wMWY2MDc2Yjc3ZDMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDM6MTM6NDEuNzQ2WiJ9"
+							}
+						],
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments/5e85351459f64500176b5666",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments",
+								"5e85351459f64500176b5666"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmptyKeyAndTextBadJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85c93f2c-4010-4604-967d-692856daa560",
+								"exec": [
+									"pm.test(\"Article ID is match\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"5e85351459f64500176b5cf966\");",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+									"});",
+									"",
+									"if(responseCode.code === 200) {",
+									"    tests[\"Test passed, response code is 200\"] = true;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Check again\"] = false;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = false;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = false;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": {\n        \"blocks\": [\n            {\n                \"key\": ,\n                \"text\": ,\n                \"type\": \"unstyled\",\n                \"depth\": 0,\n                \"inlineStyleRanges\": [],\n                \"entityRanges\": [],\n                \"data\": {}\n            }\n        ],\n        \"entityMap\": {},\n        \"VERSION\": \"6.10.1\"\n    },\n    \"hashtags\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments/5e85351459f64500176b5cf9",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments",
+								"5e85351459f64500176b5cf9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE WrongCommentID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1c360bb4-06b9-4e2d-9747-dcefda4b79bf",
+								"exec": [
+									"pm.test(\"Response time is less than 1000ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below (1000);",
+									"});",
+									"",
+									"if(responseCode.code === 204) {",
+									"    tests[\"Test passed, response code is 204 No Content\"] = false;",
+									"} else if (responseCode.code === 404) {",
+									"    tests[\"Not Found. Article does not exist. PASS\"] = true;",
+									"}",
+									" else if (responseCode.code === 500) {",
+									"     tests[\"Server is down\"] = true;",
+									"}",
+									" else {",
+									"     tests[\"Something went wrong\"] = true;",
+									" }",
+									"",
+									"pm.test(\"Size is less than 10KB\", function() {",
+									"    pm.expect(pm.response.responseSize).to.be.below(10000);",
+									"});",
+									"",
+									"pm.test(\"response Header is correct\", function() {",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+									"    pm.response.to.have.header(\"Vary\", \"Origin\");",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-store, no-cache\");",
+									"",
+									"});",
+									"",
+									"",
+									"pm.test(\"Body matches error\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Comment with id 5e85152afa834f0017000721454 not found\");",
+									"    ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							},
+							{
+								"key": "instance",
+								"value": "8g843aY2JAobp2J74ffB_GsxedlSP7HMiXSVfnJeNis.eyJpbnN0YW5jZUlkIjoiM2Y4MjE2ZTctYTBiMy00NDA2LTllODctMTcxMWMwM2VlNWViIiwiYXBwRGVmSWQiOiIxNGJjZGVkNy0wMDY2LTdjMzUtMTRkNy00NjZjYjNmMDkxMDMiLCJtZXRhU2l0ZUlkIjoiMjhiNzkzZDYtNTQyNC00MDU4LTgwNDktMDI2YTRkYjAyODJmIiwic2lnbkRhdGUiOiIyMDIwLTA0LTAxVDIxOjQyOjI0LjQ3MFoiLCJ1aWQiOiI4YzVkZGQzMC1jY2NiLTRkMzItYWM1NS1jZDIzMzg2NzQ0YzYiLCJkZW1vTW9kZSI6ZmFsc2UsIm9yaWdpbkluc3RhbmNlSWQiOiJlZWRkZThkYS04ZjUwLTQxZmUtYTBmZC1mYWRhOWRlOWNmMzUiLCJhaWQiOiJhY2RhM2Q1YS1hZThmLTQ5YTktODg3ZC1lZjIwNGI4MzFhZmMiLCJiaVRva2VuIjoiMTczNTg1MzEtZjQ5Ny0wNDVlLTFlY2UtMTU3YjhkOGVjZGM0Iiwic2l0ZU93bmVySWQiOiJmOTE0ZjExYy1hYWIzLTQ1MjctOGQ0ZS1iYWI3NjIxNDNhNjAiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjAtMDQtMDJUMDE6NDI6MjQuNDcwWiJ9",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://qasvus.wixsite.com/_api/communities-blog-node-api/_api/posts/5d6b2d1efea90e017c71d8ca/comments/5e85152afa834f0017000721454",
+							"protocol": "https",
+							"host": [
+								"qasvus",
+								"wixsite",
+								"com"
+							],
+							"path": [
+								"_api",
+								"communities-blog-node-api",
+								"_api",
+								"posts",
+								"5d6b2d1efea90e017c71d8ca",
+								"comments",
+								"5e85152afa834f0017000721454"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
